@@ -1,4 +1,5 @@
 import React from 'react';
+import {AsyncStorage} from 'react-native';
 
 const NEWS_APIKEY = '06672623ef624ef892f73d3e7bb8b629';
 let uri = 'https://newsapi.org/v2/everything?';
@@ -9,26 +10,30 @@ const api = new NewsApi(NEWS_APIKEY)
 
 export async function collectNews (){
     var fullUrl = `${uri}domains=${domains}&apiKey=${NEWS_APIKEY}`;
-    // let newsArticles;
-    // try{
-    //     var response = await fetch(fullUrl).then(res => res.json);
-    //     newsArticles = response.articles;
-    //     await localCaching(newsArticles);
-    // }catch(error){
-    //     console.error(error);
-    // }
-    // return newsArticles;
-    // var articles
-    // api.v2.everything({
-    //     domains: domains,
-    //     sources: 'bbc-news',
-    //     page: 1
-    // }).then(res => {
-    //     articles = res
-    // });
-    var result = await fetch(fullUrl).then(response => response.json);
-    return result.articles;
+
+    var articles = api.v2.everything({
+        domains: domains,
+        sources: 'bbc-news',
+        page: 1
+        })
+        .then(res => {
+            localCaching(res.articles);
+            return res.articles;
+        })
+        .catch((e) => console.error(e));
+        
+    return articles
 };
 async function localCaching(tobeCached){
-     
+     const existing = await AsyncStorage.getItem('newsArticles');
+     var newArticles = JSON.parse(existing);
+     if(!newArticles){
+         newArticles = [];
+     }
+     newArticles.push(tobeCached);
+
+     await AsyncStorage.setItem('newsArticles')
+        .catch(() => {
+            console.log('An error occurred saving!');
+        })
 }

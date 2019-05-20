@@ -23,16 +23,44 @@ class Public extends React.Component{
             fabActive: false,
             selected: 0
         }
-        this.fetchNews = this.fetchNews.bind(this);
+        // this.fetchNews = this.fetchNews.bind(this);
+    }
+    async componentWillMount(){
+        const NEWS_APIKEY = '06672623ef624ef892f73d3e7bb8b629';
+        let uri = 'https://newsapi.org/v2/everything?';
+        let domains = 'bbc.co.uk';
+        var fullUrl = `${uri}domains=${domains}&apiKey=${NEWS_APIKEY}`;
+        // await fetch(fullUrl)
+        //     .then(response => response.json())
+        //     .then(json => this.setState({
+        //         articles: json.articles
+        //     }))
+        //     .catch((e) => console.error(e));
+        // this.fetchNews()
+        // const NewsApi = require('newsapi');
+        // const api = new NewsApi(NEWS_APIKEY);
+
+        // api.v2.everything({
+        //     domains: domains,
+        //     sources: 'bbc-news',
+        //     page: 1
+        // }).then(res => 
+        //     this.setState({
+        //         articles: res.articles
+        //     })
+        //     )
+        // .catch((e) => console.error(e))
+        
     }
     componentDidMount(){
-        this.fetchNews
+        this.fetchNews();
     }
     fetchNews(){
         collectNews()
         .then(articles => this.setState({
             articles
         }))
+        .catch((e) => console.error(e));
     }
     // Category Picker Value Change
     onCategoryChange(value){
