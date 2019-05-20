@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "907640953626",
+    "firebase_url": "https://filla-33360.firebaseio.com",
+    "project_id": "filla-33360",
+    "storage_bucket": "filla-33360.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:907640953626:android:677b45c102d3de8b",
+        "android_client_info": {
+          "package_name": "filla.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "907640953626-7c8da40hvrfue0hdver3fo6jnf2p57ed.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAbvaTu4s8GjCNUJ_8rdEzco42iH6SefQc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "907640953626-7c8da40hvrfue0hdver3fo6jnf2p57ed.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

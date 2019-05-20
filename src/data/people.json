@@ -1,0 +1,68 @@
+{
+    "chatters":
+        [
+            {
+                "Id": "AA1",
+                "Name" : "Kofi Kumi",
+                "Sex": "M",
+                "PP": "http://localhost:8081/src/data/pics/tiger-woods.jpg",
+                "status": {
+                    "isOnline": true
+                }
+            },
+            {
+                "Id": "AA2",
+                "Name" : "Asama Krana",
+                "Sex": "M",
+                "PP": "http://localhost:8081/src/data/pics/girl.jpg",
+                "status": {
+                    "isOnline": false
+                }
+            },
+            {
+                "Id": "AA3",
+                "Name" : "Gyamea Misaa",
+                "Sex": "F",
+                "PP":"http://localhost:8081/src/data/pics/girl.jpg",
+                "status": {
+                    "isOnline": true
+                }
+            },
+            {
+                "Id": "AA4",
+                "Name" : "Osman Kumar",
+                "Sex": "M",
+                "PP": "http://localhost:8081/src/data/pics/tiger-woods.jpg",
+                "status": {
+                    "isOnline": false
+                }
+            },
+            {
+                "Id": "AA5",
+                "Name" : "Ama Sunkwa",
+                "Sex": "F",
+                "PP": "http://localhost:8081/src/data/pics/girl.jpg",
+                "status": {
+                    "isOnline": false
+                }
+            },
+            {
+                "Id": "AA6",
+                "Name" : "Esther Akambi",
+                "Sex": "F",
+                "PP": "http://localhost:8081/src/data/pics/girl.jpg",
+                "status": {
+                    "isOnline": true
+                }
+            },
+            {
+                "Id": "AA7",
+                "Name" : "Lily Omana",
+                "Sex": "F",
+                "PP": "http://localhost:8081/src/data/pics/girl.jpg",
+                "status": {
+                    "isOnline": true
+                }
+            }
+        ]
+}

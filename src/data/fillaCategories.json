@@ -1,0 +1,13 @@
+{
+    "categories": [
+        {"text":"Campus", "icon": "book"},
+        {"text":"Health", "icon": "medical", "iconColor": "#8BC34A"},
+        {"text":"Hoax/Joke", "icon": "megaphone"},
+        {"text":"Political", "icon": "briefcase", "iconColor": "#795548"},
+        {"text":"Religious", "icon": "podium", "iconColor": "#FDD835"},
+        {"text":"Showbiz", "icon": "videocam", "iconColor": "#F50057"},
+        {"text":"Sports", "icon": "football", "iconColor": "blue"},
+        {"text": "Delete", "icon": "trash", "iconColor": "#fa213b" },
+        {"text": "Cancel", "icon": "close", "iconColor": "#25de5b" }
+    ]
+}

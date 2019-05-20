@@ -1,0 +1,13 @@
+{
+    "messages": [
+        {
+            "_id": 1,
+            "text": "Knock Knock",
+            "createdAt": new Date(),
+            "user": {
+                "_id": 2,
+                "name": "Kofi Appau"
+            }
+        }
+    ]
+}

@@ -1,0 +1,13 @@
+[
+    {
+        "Id": "CH001",
+        "Messages": [
+            {
+                "Id": "MSG001",
+                "PersonId": "AA1",
+                "Msg": "Hello",
+                "Tick": "2019-05-19T9:57:30"
+            }
+        ]
+    }
+]

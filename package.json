@@ -1,0 +1,49 @@
+{
+  "name": "Fila",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@pusher/chatkit-client": "^1.5.0",
+    "assert": "^1.4.1",
+    "express": "^4.16.4",
+    "firebase": "^5.11.1",
+    "json-server": "^0.14.2",
+    "native-base": "^2.12.1",
+    "newsapi": "^2.4.0",
+    "pg": "^7.11.0",
+    "prop-types": "^15.7.2",
+    "query-string": "^6.5.0",
+    "react": "16.8.3",
+    "react-native": "0.59.5",
+    "react-native-easy-grid": "^0.2.1",
+    "react-native-elements": "^1.1.0",
+    "react-native-gesture-handler": "^1.2.1",
+    "react-native-gifted-chat": "^0.8.0",
+    "react-native-linear-gradient": "^2.5.4",
+    "react-native-maps": "^0.24.2",
+    "react-native-paper": "^2.15.2",
+    "react-native-router-flux": "^4.0.6",
+    "react-native-snap-carousel": "^3.7.5",
+    "react-native-vector-icons": "^6.4.2",
+    "react-navigation": "^3.9.1",
+    "react-navigation-material-bottom-tabs": "^1.0.0",
+    "sequelize": "^5.8.6",
+    "socket.io": "^2.2.0",
+    "socket.io-client": "^2.2.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.4",
+    "@babel/runtime": "^7.4.4",
+    "babel-jest": "^24.7.1",
+    "jest": "^24.7.1",
+    "metro-react-native-babel-preset": "^0.53.1",
+    "react-test-renderer": "16.8.3"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}

@@ -1,0 +1,60 @@
+{
+    "users": [
+        {
+            "name" : "Kofi Kumi",
+            "Sex": "M",
+            "avatar": "http://localhost:8081/src/data/pics/tiger-woods.jpg",
+            "status": {
+                "isOnline": true
+            }
+        },
+        {
+            "name" : "Asama Krana",
+            "Sex": "M",
+            "avatar": "http://localhost:8081/src/data/pics/girl.jpg",
+            "status": {
+                "isOnline": false
+            }
+        },
+        {
+            "name" : "Gyamea Misaa",
+            "Sex": "F",
+            "avatar":"http://localhost:8081/src/data/pics/girl.jpg",
+            "status": {
+                "isOnline": true
+            }
+        },
+        {
+            "name" : "Osman Kumar",
+            "Sex": "M",
+            "avatar": "http://localhost:8081/src/data/pics/tiger-woods.jpg",
+            "status": {
+                "isOnline": false
+            }
+        },
+        {
+            "name" : "Ama Sunkwa",
+            "Sex": "F",
+            "avatar": "http://localhost:8081/src/data/pics/girl.jpg",
+            "status": {
+                "isOnline": false
+            }
+        },
+        {
+            "name" : "Esther Akambi",
+            "Sex": "F",
+            "avatar": "http://localhost:8081/src/data/pics/girl.jpg",
+            "status": {
+                "isOnline": true
+            }
+        },
+        {
+            "name" : "Lily Omana",
+            "Sex": "F",
+            "avatar": "http://localhost:8081/src/data/pics/girl.jpg",
+            "status": {
+                "isOnline": true
+            }
+        }
+    ]
+}
