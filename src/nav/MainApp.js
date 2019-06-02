@@ -3,7 +3,8 @@ import {createStackNavigator, createAppContainer, createBottomTabNavigator, crea
 import { Tabs, Tab, StyleProvider, TabHeading, ScrollableTab, Text, Container, Fab, Root } from 'native-base';
 import getTheme from '../../native-base-theme/components';
 import material from '../../native-base-theme/variables/material';
-import {MenuProvider} from 'react-native-popup-menu'
+import { Icon, Button } from 'react-native-elements';
+
 // Login Screen
 import LoginForm from '../components/Authentication/LoginForm';
 import RegisterForm from '../components/Authentication/RegisterForm';
@@ -16,7 +17,7 @@ import Campus from '../components/filla/Campus';
 import Showbiz from '../components/filla/Showbiz';
 
 // Chat Screens
-import ContactsStack from '../components/chat/Contacts';
+import Contacts from '../components/chat/Contacts';
 import GroupStack from '../components/chat/Group';
 import MyProfileStack from '../components/chat/MyProfile';
 import Private from '../components/chat/Private';
@@ -30,7 +31,7 @@ import JobsStack from '../components/services/Jobs';
 // Modal Screens
 import FillaView from '../components/filla/FillaView';
 import Chat from '../components/chat/Chat';
-import { Icon, Button } from 'react-native-elements';
+import Profile from '../components/chat/Profile';
 
 
 class FillaTabs extends React.Component {
@@ -60,28 +61,28 @@ class FillaTabs extends React.Component {
                     </Tab> */}
                 </Tabs>
                 <Fab 
-                        raised
-                        active={this.state.fabActive}
-                        position="topRight"
-                        direction="left"
-                        containerStyle={{}}
-                        style={{backgroundColor: '#8BC34A'}}
-                        onPress={() => this.setState({ fabActive: !this.state.fabActive})}>
-                            <Icon name='share' type='ant-design'/>
-                            <Button bordered rounded style={{backgroundColor: 'white'}}>
-                                <Icon name="add-circle-outline" style={{color: '#26A69A', fontSize: 18}}/>
-                            </Button>
-                            <Button style={{backgroundColor: 'white'}}
-                                rounded bordered
-                                onPress={() =>
-                                    this.onShowActionSheet(categories)
-                                }>
-                                <Icon name="list" />
-                            </Button>
-                            <Button rounded bordered style={{backgroundColor: 'white'}}>
-                                <Text>r</Text>
-                            </Button>
-                        </Fab>
+                    raised
+                    active={this.state.fabActive}
+                    position="topRight"
+                    direction="left"
+                    containerStyle={{}}
+                    style={{backgroundColor: '#8BC34A'}}
+                    onPress={() => this.setState({ fabActive: !this.state.fabActive})}>
+                        <Icon name='share' type='ant-design'/>
+                        <Button bordered rounded style={{backgroundColor: 'white'}}>
+                            <Icon name="add-circle-outline" style={{color: '#26A69A', fontSize: 18}}/>
+                        </Button>
+                        <Button style={{backgroundColor: 'white'}}
+                            rounded bordered
+                            onPress={() =>
+                                this.onShowActionSheet(categories)
+                            }>
+                            <Icon name="list" />
+                        </Button>
+                        <Button rounded bordered style={{backgroundColor: 'white'}}>
+                            <Text>r</Text>
+                        </Button>
+                    </Fab>
             </Container>
         </StyleProvider>
     )
@@ -100,7 +101,7 @@ class ChatTabs extends React.Component{
                         <GroupStack />
                     </Tab>
                     <Tab heading={<TabHeading><Text>Contacts</Text></TabHeading>}>
-                        <ContactsStack />
+                        <Contacts navigation={this.props.navigation}/>
                     </Tab>
                     <Tab heading={<TabHeading><Text>Me</Text></TabHeading>}>
                         <MyProfileStack />
@@ -165,7 +166,8 @@ const MainStack = createStackNavigator(
             navigationOptions: {header: null}
         },
         View: FillaView,
-        Conversation: Chat
+        Conversation: Chat,
+        Profile: Profile,
     },
     {
         mode: 'modal',
@@ -194,5 +196,7 @@ const MainSwitch = createSwitchNavigator(
 const MainApp = createAppContainer(MainSwitch);
 export default () => 
     <Root>
-        <MainApp />
+        <StyleProvider style={getTheme(material)}>
+            <MainApp />
+        </StyleProvider>
     </Root>

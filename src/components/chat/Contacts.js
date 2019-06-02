@@ -1,14 +1,16 @@
 import React, {Component} from 'react'
-import {ScrollView, StyleSheet} from 'react-native'
+import {ScrollView, StyleSheet, Dimensions} from 'react-native'
 import {createStackNavigator} from 'react-navigation';
 
 import ContactsData from '../../data/people'
 import Profile from './Profile';
 import ContactComponent from './ContactComponent';
-import { Tile } from 'react-native-elements';
+import { Tile, Icon, Text } from 'react-native-elements';
+import { View, Container, Body } from 'native-base';
 
+const {width, height} = Dimensions.get('window');
 
-class Contacts extends Component {
+export default class Contacts extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -39,53 +41,73 @@ class Contacts extends Component {
         const {contacts} = this.state;
         const {navigate} = this.props.navigation;
         return (
-            <ScrollView
-                contentContainerStyle={styles.scroll}
-                showsHorizontalScrollIndicator={false}
-                showsVerticalScrollIndicator={false}>
-                {
-                    contacts.map((contact, index) =>
-                        // <ContactComponent 
-                        //     profile={contact} 
-                        //     key={index} 
-                        //     navigate={this.viewProfile}
-                        //     />
-                        <Tile
-                            >
-
-                        </Tile>
-                    )
-                }
-            </ScrollView> 
+            <Container>
+                <ScrollView
+                    contentContainerStyle={styles.scroll}
+                    showsHorizontalScrollIndicator={false}
+                    showsVerticalScrollIndicator={false}>
+                    {
+                        contacts.map((contact, index) =>
+                            // <ContactComponent 
+                            //     profile={contact} 
+                            //     key={index} 
+                            //     navigate={this.viewProfile}
+                            //     />
+                            <View style={styles.tileContainer}
+                                key={index}>
+                                <Tile
+                                    width={160}
+                                    height={220}
+                                    imageSrc={{uri: contact.PP}}
+                                    title={contact.Name}
+                                    imageContainerStyle={styles.tileImageStyle}
+                                    titleStyle={styles.tileTitle}
+                                    iconContainerStyle={styles.tileIconContainer}
+                                    contentContainerStyle={styles.tileContentContainer}
+                                    onPress={() => navigate("Profile")}>
+                                        <View style={{flex: 1, justifyContent: 'space-evenly', flexDirection: 'row'}}>
+                                            <Icon name="thumbs-o-up" type='font-awesome' color="#999" size={18} />
+                                            <Icon name="comment" type='evil-icons' color="#8BC34A" size={18} />
+                                            <Icon name="heart" type='font-awesome' color="#ED1727" size={18} />
+                                        </View>
+                                </Tile>
+                            </View>
+                        )
+                    }
+                </ScrollView> 
+            </Container>
         )
     }
 }
 
-const ContactsStack = createStackNavigator({
-    Contacts: {
-        screen: Contacts,
-        navigationOptions: { header: null }
-    },
-    Profile: {
-        screen : Profile,
-        navigationOptions: {
-            header: null
-        }
-    }
-    },
-    {
-        mode: 'modal',
-        headerMode: 'none'
-    }
-);
-
 const styles = StyleSheet.create({
     scroll: {
-        // justifyContent: 'center',
         flexDirection: 'row',
         flexWrap: 'wrap',
         padding: 5
-    }
+    },
+    tileContainer: {
+        margin: 5,
+        borderRadius: 5
+    },
+    tileImageStyle: {
+        borderTopLeftRadius: 15,
+        borderTopRightRadius: 15,
+        width: 160,
+        height: 180
+    },
+    tileTitle: {
+        fontSize: 14,
+        fontWeight: '100',
+        fontStyle: 'italic'
+    },
+    tileIconContainer: {
+        flex: 1,
+        justifyContent: 'flex-start',
+        alignSelf: 'flex-start'
+    },
+    tileContentContainer: {
+        opacity: 0.9, 
+        backgroundColor: '#fff',
+    },
 })
-
-export default ContactsStack
