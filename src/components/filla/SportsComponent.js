@@ -12,9 +12,10 @@ class SportsComponent extends React.Component {
         const {icon} = this.props;
         return (
             <TouchableOpacity
-                onPress={() => this.props.navigate("Filla", {
-                    filla: filla, icon: icon
-                })}>
+                // onPress={() => this.props.navigate("Filla", {
+                //     filla: filla, icon: icon
+                // })}
+                >
                 <Card style={styles.card}>
                     <CardItem header style={{...styles.smallMargin, flexWrap: 'wrap'}} bordered>
                         <Left style={{alignItems: 'flex-start', marginRight: 2}}>

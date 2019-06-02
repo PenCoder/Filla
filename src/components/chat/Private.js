@@ -11,7 +11,7 @@ import Chat from './Chat';
 import Users from '../models/user';
 import users from '../../data/users';
 
-class Private extends Component {
+export default class Private extends Component {
     constructor(props){
         super(props);
     };
@@ -21,17 +21,7 @@ class Private extends Component {
         separator: ListSeparator
     }
 
-    loadUsers = () => {
-        // var Store = require('react-native-local-mongodb')
-        //     , db = new Store({filename: 'key', auto: true});
-        // db.insert(users.users, (err, doc) => {
-
-        // });
-        // users.users.map(userData => {
-        //     const user = new User(userData);
-        //     user.save();
-        // });
-    }
+    loadUsers = () => {}
 
     render() {
         const {chats, separator} = this.state;
@@ -51,7 +41,7 @@ class Private extends Component {
                         containerStyle={{borderBottomWidth: 0}}
                         bottomDivider={true}
                         onPress={() => {
-                            this.props.navigation.navigate("Chat")
+                            this.props.navigation.navigate("Conversation")
                         }}/>
                     }
                     keyExtractor={item => item.Id}/>
@@ -59,18 +49,3 @@ class Private extends Component {
         )
     }
 };
-
-const PrivateStack = createStackNavigator(
-    {
-        Private: {
-            screen: Private,
-            navigationOptions: {header: null}
-        },
-        Chat: {
-            screen: Chat,
-            navigationOptions: {header: null}
-        }
-    }
-)
-
-export default PrivateStack;

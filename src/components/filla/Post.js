@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, StyleSheet, ScrollView} from 'react-native'
-import {Root, Content, Body, ActionSheet, Button, Text, Icon, Card, Thumbnail, Row, Picker, Fab} from 'native-base';
+import {Root, ActionSheet} from 'native-base';
 // import { ScrollView } from 'react-native-gesture-handler';
 
 // Filla Component
@@ -9,12 +9,11 @@ import {Root, Content, Body, ActionSheet, Button, Text, Icon, Card, Thumbnail, R
 import fillaHub from '../../data/fillas'
 import fillaCategories from '../../data/fillaCategories'
 import SportsComponent from './SportsComponent';
-import { createStackNavigator, withNavigation } from 'react-navigation';
 
 // Filla Component
 
 
-class Sports extends React.Component{
+export default class Post extends React.Component{
 
     state = {
         selected: 0,
@@ -41,7 +40,7 @@ class Sports extends React.Component{
     };
     render(){
         const {categories} = fillaCategories;
-        const {navigate} = this.props.navigation;
+        // const {navigate} = this.props;
         return (
             <Root>
             <ScrollView
@@ -55,7 +54,7 @@ class Sports extends React.Component{
                             filla={filla}
                             icon={categories.find(f => f.text == filla.cat)}
                             key={index}
-                            navigate={navigate}
+                            // navigate={navigate}
                             />
                     )
                 }
@@ -65,15 +64,6 @@ class Sports extends React.Component{
         )
     }
 }
-// Sports Stack
-const SportsStack = createStackNavigator(
-    {
-        Sports: {
-            screen: Sports,
-            navigationOptions: {header: null}
-        }
-    }
-)
 
 const styles = StyleSheet.create({
     scroll: {
@@ -95,22 +85,3 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     }
 });
-
-export default SportsStack;
-
-{/* <Picker
-    mode="dropdown"
-    iosHeader="category"
-    selectedValue={this.state.selected}
-    placeholder="Category"
-    onValueChange={this.onCategoryChange.bind(this)}>
-    {
-        categories.map((cat, index) => {
-            return (
-                <Picker.Item value={index} key={index} label={cat}>
-                    <Icon name="soccer"/>
-                </Picker.Item>
-            )
-        })
-    }
-</Picker> */}

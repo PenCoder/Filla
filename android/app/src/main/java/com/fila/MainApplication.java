@@ -2,7 +2,12 @@ package com.fila;
 
 import android.app.Application;
 
+// import io.realm.react.RealmReactPackage;
 import com.facebook.react.ReactApplication;
+import com.imagepicker.ImagePickerPackage;
+// import com.reactnativecommunity.netinfo.NetInfoPackage;
+import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
+import io.github.traviskn.rnuuidgenerator.RNUUIDGeneratorPackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import com.BV.LinearGradient.LinearGradientPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
@@ -26,6 +31,11 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new ImagePickerPackage(),
+            // new RealmReactPackage(),
+            // new NetInfoPackage(),
+            new AsyncStoragePackage(),
+            new RNUUIDGeneratorPackage(),
             new RNGestureHandlerPackage(),
             new LinearGradientPackage(),
             new VectorIconsPackage()

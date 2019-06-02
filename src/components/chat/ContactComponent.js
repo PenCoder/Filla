@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
-import {StyleSheet, Image, TouchableOpacity} from 'react-native'
+import {StyleSheet, Image, TouchableNativeFeedback} from 'react-native'
 import {Card, Body, Text, Icon, Left, CardItem, Badge} from 'native-base'
-import {withNavigation} from 'react-navigation'
+import {withNavigation} from 'react-navigation';
 
 class ContactComponent extends Component{
     constructor(props){
@@ -11,7 +11,8 @@ class ContactComponent extends Component{
     render(){
         const {profile, key} = this.props;
         return (
-                <TouchableOpacity style={styles.main}
+                <TouchableNativeFeedback style={styles.main}
+                    useForeground
                     onPress={() => {
                         this.props.navigate(key)
                     }}
@@ -45,7 +46,7 @@ class ContactComponent extends Component{
                                 <Icon name="heart" style={{color: "#ED1727", fontSize: 18}} />
                         </CardItem>
                     </Card>
-                </TouchableOpacity>
+                </TouchableNativeFeedback>
         );
     }
 }

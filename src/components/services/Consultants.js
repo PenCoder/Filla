@@ -1,42 +1,27 @@
 import React from 'react';
-import {StyleSheet, ScrollView, TouchableOpacity} from 'react-native';
-import {Container, Card, View, CardItem, Body, Text, Badge} from 'native-base';
+import {StyleSheet, ScrollView, TouchableNativeFeedback} from 'react-native';
+import {Container, Card, View, CardItem, Body, Text, Image, Badge, Icon} from 'native-base';
 import { createStackNavigator } from 'react-navigation';
 
-const ConsultantComponent = () => {
-    <TouchableOpacity>
-        <Card style={styles.card}>
-            <CardItem header>
-                <Image source={{uri: profile.PP}}
-                        style={{width: 160, height: 140}}/>
-                <Text>{profile.Name}</Text>
-            </CardItem>
-            <CardItem cardBody>
-                <Body>
-                    <Text></Text>
-                </Body>
-            </CardItem>
-            <CardItem bordered>
-                <Badge>
-                    <Icon name="" />
-                </Badge>
-                <Badge>
-                    <Icon name="" />
-                </Badge>
-            </CardItem>
-        </Card>
-    </TouchableOpacity>
-}
+import ConsultantComponent from './ConsultantComponent';
 
-class Consultants extends React.Component{
+import ContactsData from '../../data/people'
+
+
+export default class Consultants extends React.Component{
     constructor(props) {
         super(props);
 
         this.state = {
-
+            people: ContactsData.chatters
         }
     }
-
+    async getPeopleData(){
+        var uri = 'https://randomuser.me/api';
+        var people = await fetch(uri)
+                    .then(response => response.json())
+        return people.results;
+    }
     render(){
         return (
             <View>
@@ -45,28 +30,35 @@ class Consultants extends React.Component{
                     showsHorizontalScrollIndicator={false}
                     showsVerticalScrollIndicator={false}>
                     {
-
+                        this.state.people.map((person, index) => 
+                        <ConsultantComponent
+                            person={person}
+                            key={index} />
+                        )
                     }
                 </ScrollView>
             </View>
         )
     }
 };
-const ConsultantsStack = createStackNavigator(
-    {
-        Consultants: {
-            screen: Consultants,
-            navigationOptions: {header: null}
-        }
-    }
-)
+// const ConsultantsStack = createStackNavigator(
+//     {
+//         Consultants: {
+//             screen: Consultants,
+//             navigationOptions: {header: null}
+//         }
+//     }
+// )
 
 const styles = StyleSheet.create({
     scroll: {
         flexDirection: 'row',
         flexWrap: 'wrap',
-        padding: 5
+        borderRadius: 10,
+        paddingTop:2,
+        paddingLeft: 2,
+        paddingRight: 2
     }
 });
 
-export default ConsultantsStack;
+// export default ConsultantsStack;

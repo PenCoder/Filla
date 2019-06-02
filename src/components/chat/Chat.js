@@ -13,6 +13,11 @@ export default class Chat extends React.Component {
 
         // Socket client instance
         this.socket = openSocket('http://169.254.80.80:8000');
+        this.socket.on('msg', msg => {
+            this.setState((previousState) =>({
+                messages: GiftedChat.append(previousState.messages, msg)
+            }));
+        })
     }
     state = {
         messages: []

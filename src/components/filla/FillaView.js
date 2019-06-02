@@ -1,6 +1,10 @@
 import React from 'react'
-import {StyleSheet, Image} from 'react-native';
-import {Text, Card, CardItem, View, Title, Icon, Thumbnail} from 'native-base';
+import {StyleSheet, Dimensions} from 'react-native';
+import {Text, Card, CardItem, View, Title, Icon, Thumbnail, Body} from 'native-base';
+// import { Image } from 'react-native-elements';
+import Image from 'react-native-scalable-image';
+
+const {width} = Dimensions.get('window')
 
 export default class FillaView extends React.Component {
     constructor(props){
@@ -13,32 +17,47 @@ export default class FillaView extends React.Component {
     render(){
         const {navigation} = this.props;
         const filla = navigation.getParam("filla");
-        const icon = navigation.getParam("icon");
+        // const icon = navigation.getParam("icon");
         return (
             <View>
-                <Card>
+                <Card >
                     <CardItem header>
-                        <Icon name={icon.icon} />
-                        <Title>{filla.Header}</Title>
+                        {/* <Icon name={icon.icon} /> */}
+                        <Text>{filla.title}</Text>
                     </CardItem>
                     {/* <CardItem>
                         <Thumbnail source={{uri: filla.media}}/>
                         <Text>poster</Text>
                     </CardItem> */}
                     <CardItem cardBody>
-                        <Image source={{uri: filla.media}} 
-                            style={{
-                                    flex: 1,
-                                    height: undefined,
-                                    width: '95%',
-                                    borderRadius: 10,
-                                }} />
+                        <Image
+                            source={{uri: filla.urlToImage}} 
+                            resizeMode='cover'
+                            width={width}/>
                     </CardItem>
-                    <CardItem cardBody>
-                        <Text>{filla.text}</Text>
+                    <CardItem>
+                        <Text note>{filla.content}</Text>
                     </CardItem>
                 </Card>
             </View>
         )
     }
 }
+
+const styles = StyleSheet.create({
+    card: {
+        position: 'relative',
+        flex: 1
+    },
+    imageContainer: {
+        position: 'relative',
+        flex: 1
+    },
+    image: {
+        position: 'absolute',
+        top: 0,
+        bottom: 0,
+        left: 0,
+        right: 0
+    }
+})

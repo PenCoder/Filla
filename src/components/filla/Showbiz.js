@@ -15,7 +15,7 @@ const ShowbizComponent = () => {
     );
 };
 
-class Showbiz extends React.Component {
+export default class Showbiz extends React.Component {
     render(){
         return (
             <ScrollView
@@ -27,14 +27,3 @@ class Showbiz extends React.Component {
         )
     }
 };
-
-const ShowbizStack = createStackNavigator(
-    {
-        Showbiz: {
-            screen: Showbiz,
-            navigationOptions: {header: null}
-        }
-    }
-);
-
-export default ShowbizStack;

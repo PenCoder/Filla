@@ -5,6 +5,7 @@ import {createStackNavigator} from 'react-navigation';
 import ContactsData from '../../data/people'
 import Profile from './Profile';
 import ContactComponent from './ContactComponent';
+import { Tile } from 'react-native-elements';
 
 
 class Contacts extends Component {
@@ -36,7 +37,7 @@ class Contacts extends Component {
 
     render(){
         const {contacts} = this.state;
-        // const {navigate} = this.props.navigation;
+        const {navigate} = this.props.navigation;
         return (
             <ScrollView
                 contentContainerStyle={styles.scroll}
@@ -44,11 +45,15 @@ class Contacts extends Component {
                 showsVerticalScrollIndicator={false}>
                 {
                     contacts.map((contact, index) =>
-                        <ContactComponent 
-                            profile={contact} 
-                            key={index} 
-                            navigate={this.viewProfile}
-                            />
+                        // <ContactComponent 
+                        //     profile={contact} 
+                        //     key={index} 
+                        //     navigate={this.viewProfile}
+                        //     />
+                        <Tile
+                            >
+
+                        </Tile>
                     )
                 }
             </ScrollView> 

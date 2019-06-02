@@ -1,9 +1,8 @@
 import React from 'react'
-import {StyleSheet, Image, TouchableOpacity} from 'react-native'
-import {Container, View, Card, CardItem, Left, Button, Content, Body, Text, Icon, Input, Right, Badge} from 'native-base'
+import {StyleSheet, Image, TouchableOpacity, TouchableNativeFeedback} from 'react-native'
+import {View, Card, CardItem, Left, Body, Text, Icon, Badge} from 'native-base'
 import { Title } from 'react-native-paper';
-import {  } from 'react-native-gesture-handler';
-import { withNavigation } from 'react-navigation';
+import { withNavigation, NavigationActions } from 'react-navigation';
 
 class PublicFilla extends React.Component {
 
@@ -11,10 +10,16 @@ class PublicFilla extends React.Component {
         const {filla} = this.props;
         const {icon} = this.props;
         return (
-            <TouchableOpacity
-                onPress={() => this.props.navigate("FillaView", {
+            <TouchableNativeFeedback
+                useForeground
+                onPress={() => 
+                    this.props.navigation.navigate("View", {
                     filla: filla, icon: icon
-                })}>
+                    // this.props.navigation.navigate('MainStack', {}, 
+                    //     NavigationActions.navigate({routeName: 'Filla'})
+                    // )
+                })
+                }>
                 <Card style={styles.card}>
                     <CardItem header style={{...styles.smallMargin, flexWrap: 'wrap'}} bordered>
                         <Left style={{alignItems: 'flex-start', marginRight: 2}}>
@@ -56,7 +61,7 @@ class PublicFilla extends React.Component {
                         <Icon name="chatbubbles" />
                     </CardItem>
                 </Card>
-            </TouchableOpacity>
+            </TouchableNativeFeedback>
         );
     }
 };
