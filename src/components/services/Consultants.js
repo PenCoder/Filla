@@ -56,8 +56,6 @@ const styles = StyleSheet.create({
         flexWrap: 'wrap',
         borderRadius: 10,
         paddingTop:2,
-        paddingLeft: 2,
-        paddingRight: 2
     }
 });
 

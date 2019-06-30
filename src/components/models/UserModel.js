@@ -6,9 +6,9 @@ class UserModel{
         this.username = null;
         this.pwd = null;
         this.contact = null;
+        this.avatar = null;
         this.created = null;
         this.updated = null;
-        this.profileId = null;
         this.response = {
             username: '',
             pwd: '',

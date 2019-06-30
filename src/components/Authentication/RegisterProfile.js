@@ -1,6 +1,6 @@
 import React from 'react';
-import {Dimensions, TouchableNativeFeedback} from 'react-native';
-import {Button, Text, Input, Image} from 'react-native-elements';
+import {Dimensions, TouchableNativeFeedback, Input} from 'react-native';
+import {Button, Text, Image} from 'react-native-elements';
 import {Container} from 'native-base';
 var ImagePicker = require('react-native-image-picker');
 
@@ -48,6 +48,9 @@ export default class extends React.Component{
                 <Input 
                     placeholder='Name'
                     label='Name'
+                />
+                <Input 
+                    placeholder=''
                 />
             </Container>
         )

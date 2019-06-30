@@ -3,6 +3,7 @@ import {StyleSheet, Dimensions} from 'react-native';
 import {Text, Card, CardItem, View, Title, Icon, Thumbnail, Body} from 'native-base';
 // import { Image } from 'react-native-elements';
 import Image from 'react-native-scalable-image';
+import defaultStyles from '../../styles/DefaultStyles';
 
 const {width} = Dimensions.get('window')
 
@@ -23,7 +24,7 @@ export default class FillaView extends React.Component {
                 <Card >
                     <CardItem header>
                         {/* <Icon name={icon.icon} /> */}
-                        <Text>{filla.title}</Text>
+                        <Text style={defaultStyles.title}>{filla.title}</Text>
                     </CardItem>
                     {/* <CardItem>
                         <Thumbnail source={{uri: filla.media}}/>
@@ -36,7 +37,7 @@ export default class FillaView extends React.Component {
                             width={width}/>
                     </CardItem>
                     <CardItem>
-                        <Text note>{filla.content}</Text>
+                        <Text style={defaultStyles.contentText}>{filla.content}</Text>
                     </CardItem>
                 </Card>
             </View>

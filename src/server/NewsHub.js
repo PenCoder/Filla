@@ -8,29 +8,33 @@ let domains = 'bbc.co.uk';
 const NewsApi = require('newsapi');
 const api = new NewsApi(NEWS_APIKEY)
 
-export async function collectNews (isOnline){
+export async function collectNews (isOnline = false){
     var fullUrl = `${uri}domains=${domains}&apiKey=${NEWS_APIKEY}`;
-
+    var articles = []
     if (isOnline){
-    var articles = api.v2.everything({
-        domains: domains,
-        sources: 'bbc-news',
-        page: 1
-        })
-        .then(res => {
-            localCaching(res.articles);
-            return res.articles;
-        })
-        .catch((e) => console.error(e));
+        articles = api.v2.everything({
+            domains: domains,
+            sources: 'bbc-news',
+            page: 1
+            })
+            .then(res => {
+                localCaching(res.articles);
+                return res.articles;
+            })
+            .catch((e) => console.error(e));
 
         return articles
     }else {
-        return loadLocalData();
+        articles = await loadLocalData();
+        return articles;
     }
 };
-async function localCaching(tobeCached){
-    
-    await AsyncStorage.setItem('newsArticles', JSON.stringify(tobeCached))
+async function localCaching(tobeCached = []){
+    var stored = await loadLocalData()
+    tobeCached.forEach((news, index) => {
+        stored.push(news);
+    })
+    await AsyncStorage.setItem('newsArticles', JSON.stringify(stored))
     .catch(() => {
         console.log('An error occurred saving!');
     })

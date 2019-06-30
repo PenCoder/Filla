@@ -12,7 +12,8 @@ class UserService {
             username: null,
             contact: null,
             pwd: null,
-            success: null
+            success: null,
+            error: null
         }
         try {
             if(newUser.username){
@@ -23,28 +24,31 @@ class UserService {
                         newUser.created = new Date();
                         newUser.updated = newUser.created;
                         
-                        await AsyncStorage.getItem('Filla_Async_Key:user', async (error, data) =>{
-                            var users = [];
-                            
-                            if(data){
-                                var savedUsers = JSON.parse(data)
-                                
-                                if(savedUsers.find(user => user.username == newUser.username)){
-                                    response.username = 'Username already in use.';
-                                    return;
-                                }
-                                if (savedUsers.find(user => user.contact == newUser.contact)){
-                                    response.contact = 'Contact can be registered once.';
-                                    return;
-                                }
-                                users.push(savedUsers);
+                        var users = []
+
+                        var stored = await AsyncStorage.getItem('Filla_Async_Key:user');
+
+                        if(stored){
+                            var savedUsers = JSON.parse(stored)
+                            if(savedUsers.find(user => user.username == newUser.username)){
+                                response.username = 'Username already in use.';
                             }
-                            var length = users.push(newUser)
-                            if(length > 0){
-                                await AsyncStorage.setItem('Filla_Async_Key:user', JSON.stringify(users));
-                                response.success = 'Successfully saved!';
+                            if (savedUsers.find(user => user.contact == newUser.contact)){
+                                response.contact = 'Contact can be registered once.';
                             }
-                        })
+                            else{
+                                users.concat(savedUsers);
+                            }
+                        }
+                        var length = users.push(newUser)
+                        if(length > 0){
+                            await AsyncStorage.setItem('Filla_Async_Key:user', JSON.stringify(users), (error) => {
+                                response.success = 'success';
+                            });
+                            // await AsyncStorage.removeItem('Filla_Async_Key:user', (error) => {
+                            //     response.error = 'success'
+                            // })
+                        }
                     }else{
                         response.pwd = 'No password provided';
                     }
@@ -55,7 +59,7 @@ class UserService {
                 response.username = 'Please provide username';
             }
         } catch (error) {
-            response.success = null;
+            response.error = 'Could not save user input. \nPlease check and re-submit';
         }finally{
             return response;
         }
@@ -84,33 +88,36 @@ class UserService {
             return 'Saving data unsuccessful'
         }
     }
-    async loginUser(loggedUser){
+    loginUser = async (loggedUser) => {
         var response = {
-            username: '',
-            pwd: '',
+            username: null,
+            pwd: null,
+            success: null,
+            error: null
         }
-        var profile = null;
-        var userId = null;
         try {
             if (loggedUser.username){
                 if (loggedUser.pwd){
-
-                    await AsyncStorage.getItem('Filla_Async_Key:user', (error, data) => {
-                        if (data){
-                            var users = JSON.parse(data);
-                            var user = users.find(u => u.username == loggedUser.username)
-                            if (user){
-                                userId = user.pwd === loggedUser.pwd ? user.user_id : null;
+                    var users = []
+                    var stored = await AsyncStorage.getItem('Filla_Async_Key:user');
+                    
+                    if (stored){
+                        var savedUsers = JSON.parse(stored);
+                        
+                        if (Array.isArray(savedUsers)){
+                            var found = savedUsers.find(u => u.username == loggedUser.username)
+                            if (found){
+                                if (found.pwd === loggedUser.pwd){
+                                    loggedUser = found;
+                                    response.success = 'success';
+                                }
+                            }
+                            else {
+                                response.error = 'Could not authenticate user. \nPlease check input';
                             }
                         }
-                    });
-                    if (userId){
-                        await AsyncStorage.getItem('Filla_Async_Key:user_profiles', (error, data) => {
-                            if (data){
-                                var profiles = JSON.parse(data);
-                                profile = profiles.find(p => p.user_id == userId);
-                            }
-                        })
+                    }else{
+                        response.error = 'No use records exist. You will need to register'
                     }
                 }else {
                     response.pwd = 'Please provide password';
@@ -119,9 +126,9 @@ class UserService {
                 response.username = 'No username provided!';
             }
         } catch (error) {
-            
+            response.error = 'Unable to authenticate user';
         } finally{
-            return profile;
+            return response;
         }
         
     }

@@ -1,6 +1,6 @@
 import React from 'react';
 import {createStackNavigator, createAppContainer, createBottomTabNavigator, createMaterialTopTabNavigator, createSwitchNavigator} from 'react-navigation';
-import { Tabs, Tab, StyleProvider, TabHeading, ScrollableTab, Text, Container, Fab, Root } from 'native-base';
+import { Tabs, Tab, StyleProvider, TabHeading, ScrollableTab, Text, Container, Fab, Root, Header } from 'native-base';
 import getTheme from '../../native-base-theme/components';
 import material from '../../native-base-theme/variables/material';
 import { Icon, Button } from 'react-native-elements';
@@ -11,28 +11,31 @@ import RegisterForm from '../components/Authentication/RegisterForm';
 import RegisterProfile from '../components/Authentication/RegisterProfile';
 
 // Filla Screens
-import Post from '../components/filla/Post'
+import Fillas from '../components/filla/Fillas'
 import News from '../components/filla/News';
 import Campus from '../components/filla/Campus';
 import Showbiz from '../components/filla/Showbiz';
+import Event from '../components/filla/Event';
 
 // Chat Screens
 import Contacts from '../components/chat/Contacts';
-import GroupStack from '../components/chat/Group';
-import MyProfileStack from '../components/chat/MyProfile';
+import Group from '../components/chat/Group';
+import MyProfile from '../components/chat/MyProfile';
 import Private from '../components/chat/Private';
 
 // Services Screens
 import Consultants from '../components/services/Consultants';
-import ProvidersStack from '../components/services/Providers';
-import JobsStack from '../components/services/Jobs';
+import Providers from '../components/services/Providers';
+import Jobs from '../components/services/Jobs';
 
 
 // Modal Screens
 import FillaView from '../components/filla/FillaView';
 import Chat from '../components/chat/Chat';
 import Profile from '../components/chat/Profile';
+import PostForm from '../components/forms/PostForm';
 
+import MainHeader from './MainHeader';
 
 class FillaTabs extends React.Component {
     state = {
@@ -43,46 +46,26 @@ class FillaTabs extends React.Component {
     return(
         <StyleProvider style={getTheme(material)}>
             <Container>
-                <Tabs renderTabBar={() => <ScrollableTab />}>
-                    <Tab heading={<TabHeading><Text>Posts</Text></TabHeading>}>
-                        <Post navigation={navigation}/>
+                <Header>
+                    <MainHeader />
+                </Header>
+                <Tabs tabContainerStyle={{marginTop: -20}}> 
+                    <Tab heading={<TabHeading><Text>Filla</Text></TabHeading>}>
+                        <Fillas navigation={navigation}/>
                     </Tab>
-                    <Tab heading={<TabHeading><Text>News</Text></TabHeading>}>
-                        <News />
+                    <Tab heading={<TabHeading><Text>Events</Text></TabHeading>}>
+                        <Event navigation={navigation}/>
                     </Tab>
-                    <Tab heading={<TabHeading><Text>Campus</Text></TabHeading>}>
+                    <Tab heading={<TabHeading><Text>Live</Text></TabHeading>}>
                         <Campus />
                     </Tab>
-                    <Tab heading={<TabHeading><Text>Showbiz</Text></TabHeading>}>
+                    {/* <Tab heading={<TabHeading><Text>Showbiz</Text></TabHeading>}>
                         <Showbiz />
-                    </Tab>
+                    </Tab> */}
                     {/* <Tab heading={<TabHeading><Text>Locate</Text></TabHeading>}>
                         <Location />
                     </Tab> */}
                 </Tabs>
-                <Fab 
-                    raised
-                    active={this.state.fabActive}
-                    position="topRight"
-                    direction="left"
-                    containerStyle={{}}
-                    style={{backgroundColor: '#8BC34A'}}
-                    onPress={() => this.setState({ fabActive: !this.state.fabActive})}>
-                        <Icon name='share' type='ant-design'/>
-                        <Button bordered rounded style={{backgroundColor: 'white'}}>
-                            <Icon name="add-circle-outline" style={{color: '#26A69A', fontSize: 18}}/>
-                        </Button>
-                        <Button style={{backgroundColor: 'white'}}
-                            rounded bordered
-                            onPress={() =>
-                                this.onShowActionSheet(categories)
-                            }>
-                            <Icon name="list" />
-                        </Button>
-                        <Button rounded bordered style={{backgroundColor: 'white'}}>
-                            <Text>r</Text>
-                        </Button>
-                    </Fab>
             </Container>
         </StyleProvider>
     )
@@ -98,35 +81,38 @@ class ChatTabs extends React.Component{
                         <Private navigation={navigation}/>
                     </Tab>
                     <Tab heading={<TabHeading><Text>Group</Text></TabHeading>}>
-                        <GroupStack />
+                        <Group navigation={navigation}/>
                     </Tab>
                     <Tab heading={<TabHeading><Text>Contacts</Text></TabHeading>}>
                         <Contacts navigation={this.props.navigation}/>
                     </Tab>
                     <Tab heading={<TabHeading><Text>Me</Text></TabHeading>}>
-                        <MyProfileStack />
+                        <MyProfile />
                     </Tab>
                 </Tabs>
             </StyleProvider>
         )
     }
 }
-const ServicesTabs = () => {
-    return(
-        <StyleProvider style={getTheme(material)}>
-            <Tabs>
-                <Tab heading={<TabHeading><Text>Consult</Text></TabHeading>}>
-                    <Consultants />
-                </Tab>
-                <Tab heading={<TabHeading><Text>Jobs</Text></TabHeading>}>
-                    <JobsStack />
-                </Tab>
-                <Tab heading={<TabHeading><Text>Campus</Text></TabHeading>}>
-                     <ProvidersStack />
-                </Tab>
-            </Tabs>
-        </StyleProvider>
-    )
+class ServicesTabs extends React.Component {
+    render(){
+        return(
+            <StyleProvider style={getTheme(material)}>
+                
+                <Tabs>
+                    <Tab heading={<TabHeading><Text>Consult</Text></TabHeading>}>
+                        <Consultants navigation={this.props.navigation}/>
+                    </Tab>
+                    <Tab heading={<TabHeading><Text>Jobs</Text></TabHeading>}>
+                        <Jobs navigation={this.props.navigation}/>
+                    </Tab>
+                    <Tab heading={<TabHeading><Text>Providers</Text></TabHeading>}>
+                        <Providers navigation={this.props.navigation}/>
+                    </Tab>
+                </Tabs>
+            </StyleProvider>
+        )
+    }
 }
 // Bottom Tabs
 const MainBottomTabs = createBottomTabNavigator(
@@ -137,24 +123,30 @@ const MainBottomTabs = createBottomTabNavigator(
                 title: 'filla', header: null
             }
         },
-        Chat: {
+        People: {
             screen: ChatTabs,
             navigationOptions: {
-                title: 'chat', header: null
+                title: 'people', header: null,
+                tabBarIcon: (({tintColor, focused, horizontal}) => 
+                {
+                    return <Icon name='people' color={tintColor}/>
+                })
             }
         },
-        Services: {
+        Places: {
             screen: ServicesTabs,
             navigationOptions: {
-                title: 'services', header: null
+                title: 'places', header: null
             }
         }
     },
     {
         tabBarOptions: {
             labelStyle: {
-                        fontSize: 16
-                    },
+                fontSize: 18,
+                fontWeight: "bold"
+            },
+            activeTintColor: '#9E9D24',
         }
     }
 );
@@ -165,17 +157,45 @@ const MainStack = createStackNavigator(
             screen: MainBottomTabs,
             navigationOptions: {header: null}
         },
-        View: FillaView,
-        Conversation: Chat,
-        Profile: Profile,
+        View: {
+            screen: FillaView,
+            navigationOptions: {
+                headerTitle: 'Post Details',
+                headerStyle: {backgroundColor: '#9E9D24'},
+                headerTintColor: '#fff'
+            }
+        },
+        Conversation: {
+            screen: Chat,
+            navigationOptions: {
+                headerTitle:  header='Chat',
+                headerStyle: {backgroundColor: '#9E9D24'},
+                headerTintColor: '#fff'
+            }
+        },
+        Profile: {
+            screen: Profile,
+            navigationOptions: {
+                headerTitle: 'Profile Details',
+                headerStyle: {backgroundColor: '#9E9D24'},
+                headerTintColor: '#fff'
+            }
+        },
+        PostForm: {
+            screen: PostForm,
+            navigationOptions: {
+                headerTitle: 'Input Post',
+                headerStyle: {backgroundColor: '#9E9D24'},
+                headerTintColor: '#fff'
+            }
+        },
     },
     {
         mode: 'modal',
-        headerMode: 'none'
     }
 )
 // Authentication Stack
-const AuthStack = createStackNavigator({
+const AuthStack = createSwitchNavigator({
     Login: LoginForm,
     Register: RegisterForm,
     RegisterProfile: RegisterProfile
@@ -183,6 +203,7 @@ const AuthStack = createStackNavigator({
     {
         headerMode: 'none'
     })
+
 const MainSwitch = createSwitchNavigator(
     {
         Auth: AuthStack,

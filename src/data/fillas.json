@@ -4,7 +4,7 @@
         "cat": "Health",
         "header": "Eat More Vegetables Regulary To Gain More",
         "text": "Vegetables anre ildfisn ;ein;feindi udfuedfkn udnfkueksdnufn udfnuenkd",
-        "media": "http://localhost:8081/src/data/pics/grocery2.jpg",
+        "urlToImage": "http://localhost:8081/src/data/pics/grocery2.jpg",
         "cheky": 5,
         "remarks": 8
     },
@@ -13,7 +13,7 @@
         "cat": "Showbiz",
         "header": "Carl Won The Battle",
         "text": "The battle started about 5am at the Battle Square. Both fighters poised...",
-        "media": "http://localhost:8081/src/data/pics/trobot.jpg",
+        "urlToImage": "http://localhost:8081/src/data/pics/trobot.jpg",
         "cheky": 20,
         "remarks": 7
     },
@@ -22,7 +22,7 @@
         "cat": "Religious",
         "header": "The Word is A Sword",
         "text": "It is a powerful lklsi kdfile fienf disa  eflkmldfml md eldsf dflsi fdkd",
-        "media": "http://localhost:8081/src/data/pics/bible-sword.jpeg",
+        "urlToImage": "http://localhost:8081/src/data/pics/bible-sword.jpeg",
         "cheky": 15,
         "remarks": 10
     },
@@ -31,7 +31,7 @@
         "cat": "Religious",
         "header": "Time Running",
         "text": "It is a powerful lklsi kdfile fienf disa  eflkmldfml md eldsf dflsi fdkd",
-        "media": "http://localhost:8081/src/data/pics/hourglass.png",
+        "urlToImage": "http://localhost:8081/src/data/pics/hourglass.png",
         "cheky": 15,
         "remarks": 10
     },
@@ -40,7 +40,7 @@
         "cat": "Sports",
         "header": "New Europa Qualifiers Signings",
         "text": "It is a powerful lklsi kdfile fienf disa  eflkmldfml md eldsf dflsi fdkd",
-        "media": "http://localhost:8081/src/data/pics/hourglass.png",
+        "urlToImage": "http://localhost:8081/src/data/pics/hourglass.png",
         "cheky": 15,
         "remarks": 10
     },
@@ -49,7 +49,7 @@
         "cat": "Sports",
         "header": "Man-city Wins The EPL Two Times In a Roll",
         "text": "It is a powerful lklsi kdfile fienf disa  eflkmldfml md eldsf dflsi fdkd",
-        "media": "",
+        "urlToImage": "",
         "cheky": 15,
         "remarks": 10
     }
